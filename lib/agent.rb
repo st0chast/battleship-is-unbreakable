@@ -1,15 +1,16 @@
+# frozen_string_literal: true
+
 # a worthy rival
 
 require_relative 'table'
 require_relative 'ship'
 
+# the agent class
 class Agent
-  attr_accessor :hits
-  attr_reader :table, :misses
-
   def initialize
     @table = Table.new
-    @hits = []
+
+    @hits   = []
     @misses = []
   end
 
@@ -21,8 +22,13 @@ class Agent
     # TODO: create ships
   end
 
-  def get_shot coordinates
+  def get_shot(coordinates)
     result = table.get_shot(coordinates)
-    result == :hit ? @hits : @misses
+    result == :hit ? hits : misses
   end
+
+  private
+
+  attr_reader :table, :misses
+  attr_accessor :hits
 end
